@@ -6,7 +6,7 @@ import Play from "../Play.tsx";
 export default function LocalWeather() {
   const [location, setLocation] = useState(null);
   const [coords, setCoords] = useState({lat:0,long:0});
-  const [error, setError] = useState(null);
+  // const [error, setError] = useState(null);
   const [skipOnboarding, setSkipOnboarding] = useState<boolean>(false);
 
   let timer: number | null = null;
@@ -29,7 +29,7 @@ export default function LocalWeather() {
       }
     });
   }
-  const fetchLocationName = async (latitude, longitude) => {
+  const fetchLocationName = async (latitude:any, longitude:any) => {
     const API_KEY = "317ab0df8d2e4b4d8cf07d38acadd7e9"; // Replace with your API key
     const url = `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${API_KEY}`;
 
@@ -40,21 +40,23 @@ export default function LocalWeather() {
       if (data.results.length > 0) {
         setLocation(data.results[0].formatted); // The formatted address
       } else {
-        setError("No location data found.");
+        // setError("No location data found.");
       }
     } catch (err) {
-      setError(err.message);
+      // setError(err.message);
     }
   };
 
   useEffect(() => {
     getLocation()
-      .then((position) => {
+      .then((position:any) => {
         const { latitude, longitude } = position.coords;
       setCoords({long:position.coords.longitude,lat:position.coords.latitude})
         fetchLocationName(latitude,longitude)
       })
-      .catch((err) => setError(err.message));
+    //   .catch((err) =>
+    //     //  setError(err.message)
+    // );
   }, []);
   const weather = useForecast(coords.lat, coords.long);
 
