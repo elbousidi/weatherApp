@@ -1,0 +1,27 @@
+@import "intro.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@keyframes whale-move-to-left {
+    0% {transform: translateX(100%) rotate(45deg);}
+    100% {transform: translateX(-100%) rotate(0deg);}
+}
+@keyframes whale-move-to-right {
+    0% {transform: translateX(-100%) rotate(0deg);}
+    100% {transform: translateX(100%) rotate(-45deg);}
+}
+
+.animate-whale-to-left {
+    animation-duration: 1.5s;
+    animation-name: whale-move-to-left;
+    animation-iteration-count: infinite;
+}
+
+.animate-whale-to-right {
+    animation-duration: 1.5s;
+    animation-name: whale-move-to-right;
+    animation-iteration-count: infinite;
+}
